@@ -1,6 +1,6 @@
 FROM google/nodejs
 
-RUN npm install nodemon -g
+RUN  npm install nodemon -g
 
 WORKDIR /app
 
