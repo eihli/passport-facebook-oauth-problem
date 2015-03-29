@@ -1,0 +1,18 @@
+{
+  "name": "owoga",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.12.3",
+    "mongodb": "^2.0.25"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.11.1"
+  }
+}
