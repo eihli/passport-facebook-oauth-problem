@@ -1,18 +1,13 @@
-FROM ubuntu
+FROM google/nodejs
 
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+RUN npm install nodemon -g
 
-RUN echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list
+WORKDIR /app
 
-RUN apt-get update && apt-get upgrade -y
-RUN apt-get install git python vim build-essential wget curl mongodb-org nodejs npm git-core -y
-
-RUN ln -s /usr/bin/nodejs /usr/bin/node
-RUN npm install -g nodemon
+ADD . /app
 
 EXPOSE 3000
+ENV PORT=3000
+ENV MONGO_PORT=27017
 
-WORKDIR /src
-
-RUN npm install
-CMD ["nodemon server.js"]
+CMD nodemon server.js
