@@ -12,6 +12,16 @@ exports.create = function(req, res, next) {
   });
 };
 
+exports.update = function(req, res, next) {
+  User.findByIdAndUpdate(req.user.id, req.body, function(err, user) {
+    if (err) {
+      return next(err);
+    } else {
+      res.json(user);
+    }
+  });
+};
+
 exports.list = function(req, res, next) {
   User.find({}, function(err, users) {
     if (err) {
