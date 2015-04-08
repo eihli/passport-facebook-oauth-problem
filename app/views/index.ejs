@@ -4,7 +4,15 @@
     <title><%= title %></title>
   </head>
   <body>
-    <img src="img/wooga.jpeg" alt="logo">
     <h1><%= title %></h1>
+    <% if ( userFullName ) { %>
+      <h2>Hello <%=userFullName%> </h2>
+      <a href="/signout">Sign Out</a>
+    <% } else { %>
+      <a href="/signup">Signup</a>
+      <a href="/signin">Signin</a>
+    <% } %>
+    <br>
+    <img src="img/wooga.jpeg" alt="logo">
   </body>
 </html>
