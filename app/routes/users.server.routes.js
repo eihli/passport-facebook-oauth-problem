@@ -14,6 +14,21 @@ module.exports = function(app) {
       failureFlash: true
     }));
 
+  app.get('/oauth/facebook', passport.authenticate('facebook', {
+    failureRedirect: '/signin',
+    scope: ['email']
+  }));
+  app.get('/oauth/facebook/callback', passport.authenticate('facebook', {
+    failureRedirect: '/signin',
+    successRedirect: '/',
+  }), function (req, res) {
+    res.send(JSON.stringify(req.user.access_token));
+  }, function(err, req, res, next) {
+    if (err) {
+      passport.authenticate('facebook', {authType: 'reauthenticate'});
+    }
+  });
+
   app.get('/signout', users.signout);
   app.param('userId', users.userByID);
 };
