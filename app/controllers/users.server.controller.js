@@ -155,15 +155,17 @@ exports.saveOAuthUserProfile = function(req, profile, done) {
           console.log(user);
 
           // THIS IS WHERE I'M STUCK....
-          
+
+          console.log("GOING INTO USER.SAVE");
           user.save(function(err) {
             if (err) {
+              console.log("ERROR AT USER.SAVE");
               var message = _this.getErrorMessage(err);
 
               req.flash('error', message);
               return res.redirect('/signup');
             }
-            console.log("NO ERR");
+            console.log("NO ERROR AT USER.SAVE");
             return done(err, user);
           });
         });

@@ -39,12 +39,13 @@ var UserSchema = new Schema({
 });
 
 UserSchema.pre('save', function(next) {
+  console.log("IS THIS SHIT FUCKING IT UP???");
   if (this.password) {
     this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
     this.password = this.hashPassword(this.password);
 
-    next();
   };
+  next();
 });
 
 UserSchema.methods.hashPassword = function(password) {
