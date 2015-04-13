@@ -26,6 +26,14 @@ module.exports = function() {
       providerId: profile.id,
       providerData: providerData
     };
+    console.log("providerUserProfile:");
+    for (key in providerUserProfile) {
+      console.log(key + ": " + providerUserProfile[key]);
+    }
+    console.log("providerData: ");
+    for (key in providerData) {
+      console.log(key + ": " + providerData[key]);
+    }
 
     users.saveOAuthUserProfile(req, providerUserProfile, done);
   }));
