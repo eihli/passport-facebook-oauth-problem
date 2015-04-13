@@ -139,17 +139,23 @@ exports.saveOAuthUserProfile = function(req, profile, done) {
     provider: profile.provider,
     providerId: profile.providerId
   }, function(err, user) {
+    console.log("INSIDE USER.FINDONE");
     if (err) {
       return done(err);
     } else {
+      console.log("NO ERROR INSIDE USER.FINDONE");
       if (!user) {
+        console.log("NO USER OR USER NULL");
         var possibleUsername = profile.username || (profile.email ? profile.email.split('@')[0] : '');
         
         User.findUniqueUsername(possibleUsername, null, function(availableUsername) {
           profile.username = availableUsername;
-
+          console.log("INSIDE USER.FINDUNIQUEUSERNAME");
           user = new User(profile);
+          console.log(user);
 
+          // THIS IS WHERE I'M STUCK....
+          
           user.save(function(err) {
             if (err) {
               var message = _this.getErrorMessage(err);
@@ -157,7 +163,7 @@ exports.saveOAuthUserProfile = function(req, profile, done) {
               req.flash('error', message);
               return res.redirect('/signup');
             }
-
+            console.log("NO ERR");
             return done(err, user);
           });
         });
